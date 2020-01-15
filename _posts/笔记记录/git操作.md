@@ -75,7 +75,9 @@ git cherry-pick ^commit1 commit10
 3)中断：git cherry-pick --quit
 ```
 
+4、参考博客
 
+https://blog.csdn.net/fightfightfight/article/details/81039050
 
 # 出现代码冲突时，用TortoiseGIt 解决
 
@@ -92,4 +94,11 @@ git cherry-pick ^commit1 commit10
 2、找到自己需要回退得head 执行
 3、git reset --hard@{0}
 ```
+
+
+
+# 参考博客
+
+1. https://blog.csdn.net/qq_32452623/article/details/79521461（回滚等git 操作）
+2. 
 
