@@ -61,19 +61,25 @@ git cherry-pick A B
 例如：git cherry-pick 4d2951 e4cdff9
 ```
 
-2. 连续合并
+2. 连续合并(左开右闭原则)
+
+```
+git cherry-pick ^commit1 commit10
+```
+
+3、当出现冲突显示 **cherry-pick|merging** 时可以 使用以下命令
+
+```
+1）想回退到cherry 前的版本时:git cherry-pick --abort
+2) 想继续时：git cherry-pick --continue
+3)中断：git cherry-pick --quit
+```
 
 
 
+# 出现代码冲突时，用TortoiseGIt 解决
 
-
-
-
- 
-
-
-
-
+参考博客：**https://www.cnblogs.com/jasongrass/p/11199039.html**
 
 
 
