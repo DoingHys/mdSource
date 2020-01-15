@@ -61,7 +61,9 @@ git cherry-pick A B
 例如：git cherry-pick 4d2951 e4cdff9
 ```
 
-2. 
+2. 连续合并
+
+
 
 
 
