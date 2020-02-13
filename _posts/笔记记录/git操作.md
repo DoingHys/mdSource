@@ -97,6 +97,16 @@ https://blog.csdn.net/fightfightfight/article/details/81039050
 
 
 
+# 删除分支
+
+1. 删除远程分支
+
+   ```
+    git push origin --delete feature_canting_coupon_with_nacos
+   ```
+
+   
+
 # 参考博客
 
 1. https://blog.csdn.net/qq_32452623/article/details/79521461（回滚等git 操作）
