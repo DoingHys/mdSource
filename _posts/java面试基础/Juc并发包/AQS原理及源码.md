@@ -1,4 +1,4 @@
-# 谈谈你对AQS的理解
+# 1.谈谈你对AQS的理解
 
 **概念：AbstractQueuedSychronizer  ** 简称AQS；自从jdk1.5开始，jdk引入了并发包juc，juc极大的提高了java的并发性能，而aqs被认为是juc的核心，它提供了一个FIFO的队列 ，它是能够用来构建锁或同步器的基础框架；它底层是使用双向链表（Sync queue），是队列的一种实现；因此我们也可以把它当作是一种队列；该队列包含head节点和tail节点，head节点主要用来后续的调度；除此，他还包含一个Condition Queue,它不是必须的，是一个单向链表；只有aqs使用 到Condition的时候才会启动这个单向链表，而且可能会有多个condition queue（ps：需要对这个数据结构有大致的印象）
 
@@ -64,9 +64,31 @@ AQS 同步的组件：
 
 
 
-# AQS 源码理解
+# 2.AQS 源码理解
 
 参考博客：https://www.cnblogs.com/micrari/p/6937995.html
+
+## 2.1AQS 内部变量
+
+**head节点：**
+
+```
+/**
+*等待队列的头节点，会被延迟初始化；除了被初始化赋值以外，它只能通过setHead()方法去给它赋值；注意：如果头节点存在，它的waitStatus 状态被确保不能够是CANCELED(被移除队列的标志);
+**/
+private transient volatile Node head;
+```
+
+tail节点;
+
+```
+    /**
+     * Tail of the wait queue, lazily initialized.  Modified only via
+     * method enq to add new wait node.
+     *等待队列的尾节点，延迟初始化，只能通过方法enq()去增加新的等待节点
+     */
+    private transient volatile Node tail;
+```
 
 
 
