@@ -137,10 +137,33 @@ https://blog.csdn.net/qq_17555933/article/details/106125186
 
 4. jdk动态代理与cglib实现的区别？
 
-   JDK动态代理 ，利用拦截器(拦截器必须实现InvocationHanlder)加上反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。
+   代理模式：https://blog.csdn.net/yhl_jxy/article/details/52679882；
 
-   CGLiB动态代理
-   利用ASM开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。实现CGLIB动态代理必须实现MethodInterceptor(方法拦截器)接口
+   JDK动态代理基于拦截器和反射来实现。
+
+   JDK代理是不需要第三方库支持的，只需要JDK环境就可以进行代理，使用条件：
+
+   1）必须实现InvocationHandler接口；
+
+   2）使用Proxy.newProxyInstance产生代理对象；
+
+   3）被代理的对象必须要实现接口；
+
+   
+
+   使用JDK动态代理的五大步骤：
+
+   1）通过实现InvocationHandler接口来自定义自己的InvocationHandler；
+
+   2）通过Proxy.getProxyClass获得动态代理类；
+
+   3）通过反射机制获得代理类的构造方法，方法签名为getConstructor(InvocationHandler.class)；
+
+   4）通过构造函数获得代理对象并将自定义的InvocationHandler实例对象传为参数传入；
+
+   5）通过代理对象调用目标方法；
+
+   
 
    区别：
 
@@ -149,6 +172,14 @@ https://blog.csdn.net/qq_17555933/article/details/106125186
    CGLib通过继承方式实现代理。所以类或方法最好不要声明成final，对于final类或方法，是无法继承的。
 
    
+
+   Spring如何选择用JDK还是CGLiB？
+
+   1）当Bean实现接口时，Spring就会用JDK的动态代理。
+
+   2）当Bean没有实现接口时，Spring使用CGlib是实现。
+
+   3）可以强制使用CGlib（在spring配置中加入<aop:aspectj-autoproxy proxy-target-class="true"/>）。
 
 5. 谈谈你对时间滑动窗口算法的理解
 
